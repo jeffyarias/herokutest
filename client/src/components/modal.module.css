@@ -1,0 +1,50 @@
+.modalprice{
+    background-color: white;
+    position: fixed;
+    margin-left: 600px;
+    top:67%;
+    left:25%;
+    height:30%;
+    width: 25%;
+    
+    padding-right: 0%;
+    padding-left:0%;
+    padding-top: 0%;
+    padding-bottom: 1%;
+    border-radius: 10px;
+    border: 2px solid lightgray;
+    
+ 
+}
+.modalpriceh1 {
+
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;    
+text-align: center;
+font-size: 98%;
+
+
+}
+
+.modalpricep {
+
+    margin-left: 30px;
+}
+
+.modalpriceHeader{
+    background: #2A88AD; 
+	padding: 20px 30px 15px 30px;
+	margin: -20px -20px 20px -20px;
+	border-radius: 10px 10px 0 0;
+	-webkit-border-radius: 10px 10px 0 0;
+	-moz-border-radius: 10px 10px 0 0;
+	color: #fff;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+	font: normal 30px 'Bitter', serif;
+	-moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+	-webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+	box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
+	border: 1px solid #257C9E;
+
+
+}
+

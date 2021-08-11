@@ -1,0 +1,21 @@
+
+
+.pricemodal {
+  position: fixed;
+  top: 63%;
+  left: 75%;
+  background-color: white;
+  width: 300px;
+  border: 15px solid lightblue;
+  padding: 50px;
+  margin: 30px;
+  height: 325px;
+ 
+}
+
+.pricemodalHeader {
+    
+    background-color: lightblue;
+    border: 1 px solid darkblue;
+    border-radius: 3px 3px 3px 3px;
+}

@@ -1,0 +1,23 @@
+.sticky {
+    display: flex;
+      color: rgb(160, 55, 55);
+     
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: 5000;
+      background-color: #257C9E;
+      justify-content: space-around;
+      width: 100%;
+    
+        
+  }
+  
+  @media screen and (min-width: 500px) {
+  .sticky {
+      opacity: 0;
+  }
+  
+  
+  
+  }

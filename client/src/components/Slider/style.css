@@ -1,0 +1,42 @@
+
+.slider {
+  
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  margin-top: 50px;
+  height: 350px;
+  width: 100%;
+  
+  }
+  
+  
+  
+  .slide img {
+  position:absolute;
+  
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: opacity .9s ease-in-out;
+  
+  
+  }
+  .current img {
+     
+  opacity: 1;
+  
+      
+      
+  }
+  slide.current .content {
+  margin: 0 auto;
+  margin-top: 50px;
+   opacity: 1;
+    transform: translateX(600px);
+    transition: all .7s ease-in-out 0.3s;
+  
+  
+  }
+  
+  
