@@ -11,16 +11,16 @@ const cors = require('cors');
 const { google } = require('googleapis');
 var enforce = require('express-sslify');
 const app = express();
-
+const nodeoutlook = require('nodejs-nodemailer-outlook')
+var User = require('./BostonSchema.js');
 
 //app.use(enforce.HTTPS({ trustProtoHeader: true }))
 
 var router = Router();
-mongoose.connect
 
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 
 
 //app.post('/api/stripe', (req, res) => {console.log(req.body)});
@@ -77,46 +77,52 @@ const customer = await stripe.customers.create({
          
          `
 
+         mongodbURI = "mongodb+srv://jeffyarias:!Scorpion182177@cluster0.dtmma.mongodb.net/BOSTONMAIDS?retryWrites=true&w=majority"
+         mongoose.connect(mongodbURI, {useNewUrlParser: true, useUnifiedTopology: true});
+         const db = mongoose.connection;
+         db.on('error', console.error.bind(console, 'connection error:'));
+         db.once('open', function() {
+           console.log("we're connected!");
+         });
+         
 
 
-const CLIENT_ID = '294754709967-u2ffp4u74beaok9j511vrt5dbe7pul1l.apps.googleusercontent.com';
-const   CLIENT_SECRET = 'P85x0xcPKSnYuJRnOCHzwZpI';
-const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
-const REFRESH_TOKEN = '1//040JPPxuZp2UsCgYIARAAGAQSNwF-L9IrwIyiH0lx3e2zRmWh9qm4JDxRTiplCiRhRGtP5Xdco0QDkP7dzSFZJMOZJ2aIqPXX790'
-const oauth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-oauth2Client.setCredentials({refresh_token: REFRESH_TOKEN})
+
+
+const newClient = new User({
+    name: service.name,
+    address: service.address,
+    phone: service.phone,
+});
+newClient.save(function (err){
+    if (err) return handlerError(err);
+    console.log('Cleint was Saved');
+    
+    
+});
+
 
 
 async function sendEmail() {
 
 try {
-
-    const accessToken = await oauth2Client.getAccessToken()
-    const transport = nodemailer.createTransport({
-
-        service: 'gmail',
+    nodeoutlook.sendEmail({
         auth: {
-            type: 'Oauth2',
-            user: 'contactusbostonmaids@gmail.com',
-            clientId: CLIENT_ID,
-            clientSecret: CLIENT_SECRET,
-            refreshToken: REFRESH_TOKEN,
-            accessToken: accessToken
-        }
-
-    })
+            user: "contactus@bostonmaids.com",
+            pass: "182177"
+        },
+        from: 'contactus@bostonmaids.com',
+        to: 'jeffreyarias21@gmail.com, 8579309859@tmomail.net',
+        subject: 'Hey you, awesome!',
+        html: htmlEmail,
+        text: service.name,
+        onError: (e) => console.log(e),
+        onSuccess: (i) => console.log(i)
+    }
     
-const mailOptions = {
-from: 'Boston Maids',
-to: [service.email, 'jeffreyarias21@gmail.com'],
-subject:"Booking Appoitment",
-html: htmlEmail
-
-
-};
-
-const result = await transport.sendMail(mailOptions)
-return result
+    
+    );
+    
 
 } catch (error) {
     return error
